@@ -1,12 +1,41 @@
-import java.util.Scanner;
+class Reader {
+	static BufferedReader reader;
+	static StringTokenizer tokenizer;
+	static void init(InputStream input) {
+	    reader = new BufferedReader(
+	                 new InputStreamReader(input) );
+	    tokenizer = new StringTokenizer("");
+	}
+
+
+	static String next() throws IOException {
+	    while ( ! tokenizer.hasMoreTokens() ) {
+
+
+	        tokenizer = new StringTokenizer(
+	               reader.readLine() );
+	    }
+	    return tokenizer.nextToken();
+	}
+
+	static int nextInt() throws IOException {
+
+		return Integer.parseInt( next() );
+	}
+		
+	static double nextDouble() throws IOException {
+	    return Double.parseDouble( next() );
+	}
+}
+
 public class Merge {
     public static void main(String []args){
+        Reader.init(System.in);
         int len;
         Merge obj = new Merge();
-        Scanner sc = new Scanner(System.in);
         
         System.out.println("Enter size of array");
-        len = sc.nextInt();
+        len = Reader.nextInt();
         
         int []arr = new int[len];
         
