@@ -1,13 +1,42 @@
-import java.util.Scanner;
+class Reader {
+	static BufferedReader reader;
+	static StringTokenizer tokenizer;
+	static void init(InputStream input) {
+	    reader = new BufferedReader(
+	                 new InputStreamReader(input) );
+	    tokenizer = new StringTokenizer("");
+	}
+
+
+	static String next() throws IOException {
+	    while ( ! tokenizer.hasMoreTokens() ) {
+
+
+	        tokenizer = new StringTokenizer(
+	               reader.readLine() );
+	    }
+	    return tokenizer.nextToken();
+	}
+
+	static int nextInt() throws IOException {
+
+		return Integer.parseInt( next() );
+	}
+		
+	static double nextDouble() throws IOException {
+	    return Double.parseDouble( next() );
+	}
+}
+
 public class Bubble {
 
      public static void main(String []args){
         int len;
         Bubble obj = new Bubble();
-        Scanner sc = new Scanner(System.in);
+        Reader.init(System.in);
         
         System.out.println("Enter size of array");
-        len = sc.nextInt();
+        len = Reader.nextInt();
         
         int []arr = new int[len];
         
