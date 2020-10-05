@@ -9,4 +9,5 @@ def insertionSort(arr):
         arr[j+1] = key 
     print("Sorted Array " ,arr)
 
-insertionSort([4,2,5,3,1,7]) 
+if __name__ == "__main__":
+    insertionSort([4,2,5,3,1,7]) 
