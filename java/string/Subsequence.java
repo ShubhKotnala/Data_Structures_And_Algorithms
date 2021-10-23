@@ -18,6 +18,7 @@ class MyCode {
       if(mainStr.charAt(j)==shortStr.charAt(i)){
         p++;
         count=j;
+        break;
       }
   }
   if(p==shortStr.length){
