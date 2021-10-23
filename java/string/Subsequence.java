@@ -1,10 +1,7 @@
-//Problem Statement : 
-//MainStr = “abcdef”
-//SmallStr= “bce”
-
-//To find that SmallStr is a subsequence of main str or not?
-//Sol:
-
+/* Author : Paras Wadhwa
+ * Problem : To find if one starting is a substring of another
+ * Explanation : Any string containing exact same subsequence of the string in another
+ */
 
 import java.io.*;
  
