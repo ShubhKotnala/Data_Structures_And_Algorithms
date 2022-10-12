@@ -33,7 +33,8 @@ const fizzbuzz = (num) => {
         if (i % 5 === 0) out += 'BUZZ'
         result.push(out || String(i))
     }
-    return result
+   console.log(result)
+   return result
 }
 
 fizzbuzz(100)
