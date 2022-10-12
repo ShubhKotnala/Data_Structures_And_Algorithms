@@ -11,9 +11,12 @@ Example 2:
     Output: 4
  */
 function singleNumber(nums) {
-    //TODO: implement this function
-    result = 0;
-    console.log(result);
+  let len = nums.length;
+  let result = 0;
+  for (let i = 0; i < len; i++) {
+    result = result ^ nums[i];
+  }
+  console.log(result);
 }
 
-singleNumber([1,2,2,3,4,5,4,5])
+singleNumber([1, 1, 2, 2, 3, 4, 5, 4, 5]);
