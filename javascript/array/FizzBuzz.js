@@ -25,9 +25,15 @@ Constraints:
     1 <= n <= 104
  */
 
-function fizzBuzz(n) {
-    var result = [];
-    return result;
+const fizzbuzz = (num) => {
+    let result = []
+    for (let i = 1; i <= num; i++) {
+        let out = ''
+        if (i % 3 === 0) out += 'FIZZ'
+        if (i % 5 === 0) out += 'BUZZ'
+        result.push(out || String(i))
+    }
+    return result
 }
 
-console.log(fizzBuzz(1));
+fizzbuzz(100)
