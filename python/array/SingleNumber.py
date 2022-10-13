@@ -13,6 +13,8 @@ Example 2:
 
 def single_number(nums):
     result = 0
+    for n in nums:
+        result = n ^ result
     print(result)
 
 if __name__ == "__main__":
