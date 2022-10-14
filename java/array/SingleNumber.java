@@ -18,7 +18,10 @@ class SingleNumber {
     }
 
     public static int singleNumber(int[] nums) {
-        //TODO: implementation needed
-        return 0;
+        int res = nums[0];
+        for (int i = 1; i < nums.length; i++){
+            res = res ^ nums[i];
+        }   
+        return res;
     }
 }
