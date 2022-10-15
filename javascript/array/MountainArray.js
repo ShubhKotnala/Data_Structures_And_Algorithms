@@ -33,7 +33,20 @@ Constraints:
  */
 
 function validMountainArray(arr) {
-    return false;
+    if (arr.length < 3) return false;
+    if (arr[1] < arr[0]) return false;
+
+    let maxFound = false;
+
+     for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i + 1] === arr[i]) return false;
+        if (maxFound && arr[i + 1] > arr[i]) return false;
+        if (arr[i] > arr[i + 1]) {
+            maxFound = true;
+        }
+    }
+  // return maxFound ? true : false
+  return maxFound;
 }
 
 arr = [1,2,3,4,5,4,3,2,1]
