@@ -1,10 +1,11 @@
-public class binary_search{
+public class BinarySearch{
 
     static int binarySearch(int[] arr1, int key){
     int start = 0;
     int end = arr1.length - 1;
 
-    while (start <= end) {
+    while (start <= end) 
+    {
         int middle = (int)Math.floor((start + end) / 2);
         System.out.println("middle: "+middle);
 

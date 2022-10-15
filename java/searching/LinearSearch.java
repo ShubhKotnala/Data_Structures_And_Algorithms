@@ -1,14 +1,15 @@
-public class linear_search{
+public class LinearSearch{
 
-    static int linearSearch(int[] arr1, int key){
-    for(int i=0;i<arr1.length;i++)
+    static int linearSearch(int[] arr1, int key)
     {
-        if(arr1[i]==key)
+        for(int i=0;i<arr1.length;i++)
         {
-            return arr1[i];
+            if(arr1[i]==key)
+            {
+                return arr1[i];
+            }
         }
-    }
-    return -1;
+        return -1;
     }
 
     public static void main(String args[])
