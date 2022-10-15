@@ -56,7 +56,7 @@ def remove_k_digits(num="", k=0):
 
 
 if __name__ == ("__main__"):
-    print(remove_k_digits("1432219", 3));
-    print(remove_k_digits("10200", 1));
-    print(remove_k_digits("10", 2));
-    print(remove_k_digits("432342", 2));
+    print(remove_k_digits("1432219", 3))
+    print(remove_k_digits("10200", 1))
+    print(remove_k_digits("10", 2))
+    print(remove_k_digits("432342", 2))
