@@ -26,7 +26,7 @@ public class BinarySearch{
 
     public static void main(String args[])
     {
-        int arr1[] = {10,20,30,40,50};
+        int[] arr1 = {10,20,30,40,50};
         int key = 20;
         int data = binarySearch(arr1, key);
         if(data==-1)

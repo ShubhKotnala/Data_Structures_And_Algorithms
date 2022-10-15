@@ -14,7 +14,7 @@ public class LinearSearch{
 
     public static void main(String args[])
     {
-        int arr1[] = {10,8,12,98,67};
+        int[] arr1 = {10,8,12,98,67};
         int key = 12;
         int data = linearSearch(arr1, key);
         if(data==-1)
