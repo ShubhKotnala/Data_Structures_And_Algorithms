@@ -1,3 +1,19 @@
+/*
+Binary Search is a searching algorithm used in a sorted array by repeatedly dividing the search interval
+in half. The idea of binary search is to use the information that the array is sorted
+and reduce the time complexity to O(Log n).
+
+Test Cases:
+    Input: Array[10,20,30,40,50] key = 20
+    Output: Found 20
+
+    Input: Array[10,20,30,40,50] key = 24
+    Output: Not found 24
+
+    Input: Array[14,28,42,56,70,84,98,112,126,140] key = 70
+    Output: Found 70
+
+*/
 public class BinarySearch{
 
     static int binarySearch(int[] arr1, int key){
@@ -7,7 +23,7 @@ public class BinarySearch{
     while (start <= end) 
     {
         int middle = (int)Math.floor((start + end) / 2);
-        System.out.println("middle: "+middle);
+        // System.out.println("middle: "+middle);
 
         if (arr1[middle] == key) {
             // found the key
