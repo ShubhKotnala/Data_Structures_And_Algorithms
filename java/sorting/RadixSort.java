@@ -1,9 +1,10 @@
-// Radix sort Java implementation
+
+    // Radix sort Java implementation
 
 import java.io.*;
 import java.util.*;
 
-class Radix {
+class RadixSort {
 
 	// A utility function to get maximum value in arr[]
 	static int getMax(int arr[], int n)
@@ -78,3 +79,5 @@ class Radix {
 		print(arr, n);
 	}
 }
+
+
