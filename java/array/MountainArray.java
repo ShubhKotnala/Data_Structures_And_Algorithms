@@ -38,6 +38,20 @@ public class MountainArray {
     }
 
     public static boolean validMountainArray(int[] arr) {
-        return false;
+        if (arr.length < 3) return false;
+        int start = 0;
+        int end = arr.length-1;
+        //Loop and check from both end if one side value ascend and other side value descend.
+        while (start < end) {
+            if (arr[start+1] > arr[start]) {
+                start++;
+            } else if (arr[end-1] > arr[end]) {
+                end--;
+            } else {
+                break;
+            }
+        }
+        return start != 0 && end != arr.length-1 && start == end;
+
     }
 }
