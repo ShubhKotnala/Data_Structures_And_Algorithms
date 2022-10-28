@@ -1,5 +1,4 @@
 // Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time by comparisons.
-
 /*
 To sort an array of size N in ascending order:
 1. Iterate from arr[1] to arr[N] over the array.
