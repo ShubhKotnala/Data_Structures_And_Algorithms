@@ -2,7 +2,7 @@
 #Md Zeeshan
 
 
-# -----Under Circular Linked List|-----#
+# -----| Understand Circular Linked List|-----#
 
 # QUES: What is Linked List -
 # ANS: A linked list is a kind of linear data structure where each node has a data part and an address part which points to the next node. 
