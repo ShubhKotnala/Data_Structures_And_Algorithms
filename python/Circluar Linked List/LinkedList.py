@@ -2,14 +2,24 @@
 #Md Zeeshan
 
 
-# -----|-----#
+# -----Under Circular Linked List|-----#
 
+# QUES: What is Linked List -
+# ANS: A linked list is a kind of linear data structure where each node has a data part and an address part which points to the next node. 
+# A circular linked list is a type of linked list where the last node points to the first one, making a circle of nodes.
 # Search an Element in a Circular Linked List
+
+# Example:
+# Input: CList = 6->5->4->3->2, find = 3
+# Output: Element is present
+ 
+# Input: CList = 6->5->4->3->2, find = 1
+# Output: Element is not present
 
 # For example, if the key to be searched is 30 and the linked list is 5->4->3->2, then the function should return false.
 # If the key to be searched is 4, then the function should return true. 
 
-# Approach: 
+# How to approach: 
 
 #    1. Initialize a node pointer, temp = head.
 #    2. Initialize a counter f=0 (to check if the element is present in a linked list or not).
