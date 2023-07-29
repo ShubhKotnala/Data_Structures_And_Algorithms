@@ -17,13 +17,12 @@ class DuplicateZeroes {
 
     public static void duplicateZeros(int[] arr) {
         int n = arr.length, i = 0;
-        for(; i< n ;i++){
-            int val = arr[i];
-            if(val == 0){
+        //loop optimization
+        for(int z : arr){
+            if(z == 0){
                 for(int j = n-1; j>i;j--){
                     arr[j] = arr[j-1];
                 }
-                i++;
             }
         }
     }
