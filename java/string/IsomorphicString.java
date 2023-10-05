@@ -43,7 +43,7 @@ Example 3:
     }
 
     public static void main(String[] args) {
-		String s = "egg";
+	String s = "egg";
         String t = "add";
         System.out.printf("Is '%s' ismorphic to '%s'? " + (isIsomorphic(s, t)? "Yes" : "No"), s, t);
         s = "foo";
