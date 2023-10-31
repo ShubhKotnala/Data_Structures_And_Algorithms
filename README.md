@@ -12,8 +12,7 @@ Additionally, this repository is marked eligible for Hacktober Fest to to increa
 See [Contributions document](./CONTRIBUTIONS.md) for more information
 
 - ##### <img src="https://ghost.org/images/docs/setup/fork.gif" width="30"> _Huge Shoutout to all the Forkers_
-[![Forkers repo roster for @ShubhKotnala/Data_Structures_And_Algorithms](https://reporoster.com/forks/ShubhKotnala/Data_Structures_And_Algorithms)](https://github.com/ShubhKotnala/Data_Structures_And_Algorithms/network/members)
-
+[![Forkers repo roster for @ShubhKotnala/Data_Structures_And_Algorithms](https://bytecrank.com/nastyox/reporoster/php/forkersSVG.php?user=ShubhKotnala&repo=Data_Structures_And_Algorithms)](https://github.com/ShubhKotnala/Data_Structures_And_Algorithms/network/members)
 
 ### Repository Stats
 A brief overview of the repository
