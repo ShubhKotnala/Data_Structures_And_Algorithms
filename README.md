@@ -15,11 +15,11 @@ See [Contributions document](./CONTRIBUTIONS.md) for more information
 [![Forkers repo roster for @ShubhKotnala/Data_Structures_And_Algorithms](https://bytecrank.com/nastyox/reporoster/php/forkersSVG.php?user=ShubhKotnala&repo=Data_Structures_And_Algorithms)](https://github.com/ShubhKotnala/Data_Structures_And_Algorithms/network/members)
 
 ### Repository Stats
-A brief overview of the repository
+A brief overview of the repository <br>
 [![Repository Stats](https://stats.deeptrain.net/repo/ShubhKotnala/Data_Structures_And_Algorithms)](https://github.com/ShubhKotnala/Data_Structures_And_Algorithms)
 
 ### Contributor Stats
 It's all the contributors that makes a great repository!
-Thanks to all the contributors who helped in making this repository better.
+Thanks to all the contributors who helped in making this repository better.<br>
 [![Repository Stats](https://stats.deeptrain.net/contributor/ShubhKotnala/Data_Structures_And_Algorithms/?column=10)](https://github.com/ShubhKotnala/Data_Structures_And_Algorithms)
 
