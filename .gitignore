@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+/.project
+/.classpath
+/.settings/
+/out/
+/build/
+
+# C/C++
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.lib
+*.dll
+*.so
+*.dSYM/
+
+# Node/JavaScript
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+coverage/
+
+# OS / Editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
