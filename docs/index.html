@@ -4,178 +4,196 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Data Structures & Algorithms – Code Explorer</title>
+  <meta name="description" content="Beginner-friendly DSA repository with multi-language solutions. Explore files, read docs, and contribute via Hacktoberfest." />
   <style>
     :root {
-      --bg: #0b1220;
-      --panel: #0f172a;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #60a5fa;
-      --card: #111827;
-      --border: #1f2937;
-      --hover: #0b1326;
-      --chip: #1e293b;
-      --ok: #22c55e;
-      --warn: #f59e0b;
-      --error: #ef4444;
+      --bg: #0b1220; --panel: #0f172a; --text: #e2e8f0; --muted: #94a3b8;
+      --accent: #60a5fa; --accent2: #34d399;
+      --card: #111827; --border: #1f2937; --hover: #0b1326; --chip: #1e293b;
       --shadow: 0 10px 30px rgba(0,0,0,.25);
     }
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #f7f9fc;
-        --panel: #ffffff;
-        --text: #0f172a;
-        --muted: #475569;
-        --accent: #2563eb;
-        --card: #ffffff;
-        --border: #e5e7eb;
-        --hover: #f3f4f6;
-        --chip: #eef2ff;
-        --shadow: 0 8px 24px rgba(2, 6, 23, .08);
+        --bg: #f7f9fc; --panel: #ffffff; --text: #0f172a; --muted: #475569;
+        --accent: #2563eb; --accent2: #059669;
+        --card: #ffffff; --border: #e5e7eb; --hover: #f3f4f6;
+        --chip: #eef2ff; --shadow: 0 8px 24px rgba(2,6,23,.08);
       }
     }
     [data-theme="light"] {
       --bg: #f7f9fc; --panel: #ffffff; --text: #0f172a; --muted: #475569;
-      --accent: #2563eb; --card: #ffffff; --border: #e5e7eb; --hover: #f3f4f6; --chip: #eef2ff;
-      --shadow: 0 8px 24px rgba(2, 6, 23, .08);
+      --accent: #2563eb; --accent2: #059669; --card: #ffffff; --border: #e5e7eb; --hover: #f3f4f6; --chip: #eef2ff;
+      --shadow: 0 8px 24px rgba(2,6,23,.08);
     }
     [data-theme="dark"] {
       --bg: #0b1220; --panel: #0f172a; --text: #e2e8f0; --muted: #94a3b8;
-      --accent: #60a5fa; --card: #111827; --border: #1f2937; --hover: #0b1326; --chip: #1e293b;
+      --accent: #60a5fa; --accent2: #34d399; --card: #111827; --border: #1f2937; --hover: #0b1326; --chip: #1e293b;
       --shadow: 0 10px 30px rgba(0,0,0,.25);
     }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
     body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.08), transparent 60%),
-                  radial-gradient(1000px 500px at 110% -20%, rgba(34,197,94,.08), transparent 55%),
-                  var(--bg);
+      margin: 0; background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.08), transparent 60%),
+        radial-gradient(1000px 500px at 110% -20%, rgba(34,197,94,.08), transparent 55%),
+        var(--bg);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     }
-
-    header {
-      position: sticky; top: 0; z-index: 10;
-      backdrop-filter: blur(8px);
-      background: color-mix(in oklab, var(--bg) 85%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 18px 20px; }
-
-    .hero {
-      display: grid; gap: 10px; padding: 24px 0 6px;
-      grid-template-columns: 1fr auto; align-items: center;
-    }
-    .title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; letter-spacing: .2px; }
-    .subtitle { color: var(--muted); font-size: .95rem; margin-top: 6px; }
-
-    .controls { display: flex; gap: 10px; align-items: center; }
-    .chip {
-      padding: 6px 10px; border-radius: 999px; background: var(--chip);
-      color: var(--muted); font-size: .85rem; border: 1px solid var(--border);
+    .container { max-width: 1150px; margin: 0 auto; padding: 18px 20px }
+    header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent) }
+    .topbar { display: flex; align-items: center; gap: 14px; justify-content: space-between }
+    .brand { display:flex; align-items:center; gap:10px; font-weight: 800; font-size: clamp(1.1rem,2.1vw,1.4rem) }
+    .brand .logo { width: 28px; height: 28px; display:grid; place-items:center; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: var(--shadow) }
+    .controls { display:flex; align-items:center; gap: 10px; }
+    .search {
+      width:min(380px, 55vw); background: var(--panel); border:1px solid var(--border);
+      border-radius: 10px; padding: 10px 12px; color: var(--text); outline: none;
     }
     .btn {
-      appearance: none; border: 1px solid var(--border);
-      padding: 8px 12px; border-radius: 10px; background: var(--panel);
-      color: var(--text); cursor: pointer; font-weight: 600;
-      transition: transform .06s ease, background .2s ease, border-color .2s ease;
-      box-shadow: var(--shadow);
+      appearance:none; border:1px solid var(--border); background: var(--panel);
+      color:var(--text); padding: 8px 12px; border-radius: 10px; cursor: pointer; font-weight: 600;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease; box-shadow: var(--shadow);
     }
-    .btn:hover { background: var(--hover); transform: translateY(-1px); }
-    .search {
-      width: min(360px, 55vw); background: var(--panel);
-      border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
-      color: var(--text); outline: none;
-    }
+    .btn:hover { background: var(--hover); transform: translateY(-1px) }
 
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding: 10px 12px;
-      margin: 14px 0 28px;
-    }
+    .hero { display:grid; gap: 18px; grid-template-columns: 1.4fr .6fr; align-items:center; margin-top: 18px }
+    .hero h1 { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.2rem) }
+    .muted { color: var(--muted) }
+    .chips { display:flex; flex-wrap: wrap; gap: 8px; margin-top: 8px }
+    .chip { padding: 6px 10px; border-radius: 999px; background: var(--chip); color: var(--muted); border:1px solid var(--border); font-size:.85rem }
+    .cta { display:flex; gap:10px; margin-top: 10px; flex-wrap: wrap }
+    .cta a { text-decoration:none }
+    .primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); border-color: transparent; color: white }
+    .primary:hover { transform: translateY(-1px) scale(1.01) }
+
+    .panel { background: var(--panel); border:1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); padding: 14px 14px; margin-top: 20px }
+    .grid { display:grid; gap: 14px }
+    @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr } }
+
+    /* Contributors */
+    .contributors { display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px }
+    .contrib { background: var(--card); border:1px solid var(--border); border-radius: 14px; padding: 12px; display:flex; align-items:center; gap: 10px }
+    .contrib img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border) }
+    .contrib a { color: var(--text); text-decoration: none }
+    .contrib a:hover { text-decoration: underline }
 
     /* Tree */
-    .tree { padding: 6px 8px 2px 6px; }
-    .node {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 8px; border-radius: 10px;
-      transition: background .15s ease;
-    }
-    .node:hover { background: var(--hover); }
-    .node .twisty {
-      width: 18px; height: 18px; border: 1px solid var(--border);
-      border-radius: 6px; display: inline-grid; place-items: center;
-      font-size: 12px; background: var(--card);
-    }
-    .node .icon { width: 18px; text-align: center; opacity: .9; }
-    .node .label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .node .meta { color: var(--muted); font-size: .85rem; }
+    .tree { padding: 6px 8px 2px 6px }
+    .node { display:flex; align-items:center; gap:10px; padding: 8px 8px; border-radius:10px; transition: background .15s ease }
+    .node:hover { background: var(--hover) }
+    .node .twisty { width: 18px; height: 18px; border:1px solid var(--border); border-radius:6px; display:inline-grid; place-items:center; font-size:12px; background: var(--card) }
+    .node .icon { width: 18px; text-align:center; opacity: .9 }
+    .node .label { flex:1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .node .meta { color: var(--muted); font-size: .85rem }
+    .children { margin-left: 28px; border-left: 1px dashed var(--border); padding-left: 10px }
+    .loading { color: var(--muted); font-style: italic; padding: 6px 0 12px 36px }
+    .skeleton { height:12px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 20%, transparent), transparent); background-size:200% 100%; animation: shimmer 1.2s infinite; border-radius: 6px; margin: 8px 0 8px 36px; width: 60% }
+    @keyframes shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+    a.file { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--border) }
+    a.file:hover { color: var(--accent); border-color: var(--accent) }
 
-    .children { margin-left: 28px; border-left: 1px dashed var(--border); padding-left: 10px; }
-    .loading { color: var(--muted); font-style: italic; padding: 6px 0 12px 36px; }
-    .skeleton {
-      height: 12px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 20%, transparent), transparent);
-      background-size: 200% 100%; animation: shimmer 1.2s infinite; border-radius: 6px; margin: 8px 0 8px 36px; width: 60%;
-    }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-    a.file {
-      color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--border);
-    }
-    a.file:hover { color: var(--accent); border-color: var(--accent); }
-
-    footer {
-      color: var(--muted); font-size: .9rem; padding: 24px 0 60px;
-    }
-    .badge { color: var(--accent); font-weight: 700; }
+    footer { color: var(--muted); font-size: .9rem; padding: 28px 0 60px; text-align:center }
+    .badge { color: var(--accent); font-weight: 700 }
   </style>
 </head>
 <body>
   <header>
-    <div class="container hero">
-      <div>
-        <div class="title">📘 Data Structures & Algorithms — Code Explorer</div>
-        <div class="subtitle">Nested folders • Lazy loading • Dark mode • GitHub API powered</div>
+    <div class="container topbar">
+      <div class="brand">
+        <div class="logo">DSA</div>
+        <span>Data Structures & Algorithms</span>
       </div>
       <div class="controls">
         <input id="search" class="search" placeholder="Search files… (e.g., heap, trie, dp)" />
+        <a id="openRepo" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
         <button id="themeToggle" class="btn" title="Toggle theme">🌓 Theme</button>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <div class="card">
-      <div class="tree" id="treeRoot"></div>
-    </div>
+    <!-- HERO -->
+    <section class="hero panel">
+      <div>
+        <h1>Beginner-friendly DSA, multi-language, open to contributions</h1>
+        <p class="muted">Explore solutions in Python, Java, C++, and JavaScript. Use the nested explorer below, read the docs, and raise a PR for Hacktoberfest.</p>
+        <div class="chips">
+          <span class="chip">#arrays</span><span class="chip">#graphs</span><span class="chip">#dp</span>
+          <span class="chip">#strings</span><span class="chip">#trees</span><span class="chip">#heaps</span>
+        </div>
+        <div class="cta">
+          <a id="readmeLink" class="btn primary" target="_blank" rel="noopener">📖 Readme</a>
+          <a id="contribLink" class="btn" target="_blank" rel="noopener">🤝 Contributing</a>
+          <a id="issuesLink" class="btn" target="_blank" rel="noopener">🐛 Issues</a>
+          <a id="prsLink" class="btn" target="_blank" rel="noopener">🔀 Pull Requests</a>
+          <a id="festLink" class="btn" target="_blank" rel="noopener">🌟 Hacktoberfest</a>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0">Contributors</h3>
+        <div id="contributors" class="contributors"></div>
+      </div>
+    </section>
+
+    <!-- TWO PANELS: EXPLORER + ABOUT -->
+    <section class="grid grid-2">
+      <div class="panel">
+        <h3 style="margin-top:0">Repository Explorer</h3>
+        <div class="tree" id="treeRoot"></div>
+        <div class="muted" style="margin-top:10px">Tip: unauthenticated GitHub API has low rate limits. If you hit them, wait or add a token in the script (optional).</div>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0">About this Project</h3>
+        <p>This repository hosts implementations of classic data structures and algorithms across multiple languages. It’s designed to help beginners learn, compare solutions, and contribute meaningfully.</p>
+        <ul>
+          <li>Keep PRs single-purpose and well-documented.</li>
+          <li>Add time/space complexities and sample I/O in code headers.</li>
+          <li>Place files in the correct language folders (e.g., <code>python/</code>, <code>java/</code>, <code>CPP/</code>, <code>javascript/</code>).</li>
+        </ul>
+        <p class="muted">Made with ♥️ for the open source community.</p>
+      </div>
+    </section>
+
     <footer>
-      Tip: unauthenticated GitHub API has low rate limits. If you hit them, wait a minute or <span class="badge">add a token</span> in the script (optional).
+      © <span id="year"></span> ShubhKotnala / Data_Structures_And_Algorithms · <span class="badge">GitHub Pages</span>
     </footer>
   </main>
 
   <script>
     // --- CONFIG ---
     const REPO_OWNER = "ShubhKotnala";
-    const REPO_NAME = "Data_Structures_And_Algorithms";
-    const API_ROOT = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
-    // Optional: add a personal access token (with public_repo scope) to increase rate limits.
+    const REPO_NAME  = "Data_Structures_And_Algorithms";
+    const DEFAULT_BRANCH = "main"; // change to "master" if needed
+    const API_ROOT   = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
+    const CONTENTS   = `${API_ROOT}/contents`;
+    // Optional: add a personal access token (public_repo scope) to increase rate limits.
     // const GITHUB_TOKEN = "ghp_xxx"; // leave undefined to stay unauthenticated
     const CODE_EXTENSIONS = [".py", ".java", ".cpp", ".c", ".js"];
-    const SHOW_NON_CODE = false; // set true if you want to show every file
+    const SHOW_NON_CODE = false; // set to true to show every file
+
+    // Links
+    const repoUrl    = `https://github.com/${REPO_OWNER}/${REPO_NAME}`;
+    const readmeUrl  = `${repoUrl}#readme`;
+    const contribUrl = `${repoUrl}/blob/${DEFAULT_BRANCH}/CONTRIBUTIONS.md`;
+    const issuesUrl  = `${repoUrl}/issues`;
+    const prsUrl     = `${repoUrl}/pulls`;
+    const festUrl    = "https://hacktoberfest.com/";
+
+    // Init links
+    document.getElementById("openRepo").href = repoUrl;
+    document.getElementById("readmeLink").href = readmeUrl;
+    document.getElementById("contribLink").href = contribUrl;
+    document.getElementById("issuesLink").href = issuesUrl;
+    document.getElementById("prsLink").href = prsUrl;
+    document.getElementById("festLink").href = festUrl;
+    document.getElementById("year").textContent = new Date().getFullYear();
 
     // --- THEME ---
-    const root = document.documentElement;
     const themeToggle = document.getElementById("themeToggle");
     const userPref = localStorage.getItem("theme");
     if (userPref) document.body.setAttribute("data-theme", userPref);
-
     themeToggle.addEventListener("click", () => {
       const current = document.body.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       const next = current === "dark" ? "light" : "dark";
@@ -188,24 +206,24 @@
     let searchQuery = "";
     searchInput.addEventListener("input", (e) => {
       searchQuery = e.target.value.trim().toLowerCase();
-      // collapse all then expand matches on next render pass
       renderNodeChildren(rootNodeEl, rootPath, true);
     });
 
-    // --- FETCH / CACHE ---
-    const cache = new Map(); // path -> items[]
+    // --- FETCH / CACHE HELPERS ---
+    const headers = { "Accept": "application/vnd.github+json" };
+    // if (typeof GITHUB_TOKEN === "string") headers["Authorization"] = `Bearer ${GITHUB_TOKEN}`;
+
     async function apiFetch(url) {
-      const headers = { "Accept": "application/vnd.github+json" };
-      // if (typeof GITHUB_TOKEN === "string") headers["Authorization"] = `Bearer ${GITHUB_TOKEN}`;
       const res = await fetch(url, { headers });
-      if (!res.ok) throw new Error(`GitHub API error ${res.status}`);
+      if (!res.ok) throw new Error(`GitHub API ${res.status}`);
       return res.json();
     }
+
+    const cache = new Map(); // path -> items[]
     async function getDir(path = "") {
       const key = path || "/";
       if (cache.has(key)) return cache.get(key);
-      const data = await apiFetch(`${API_ROOT}/${path}`);
-      // normalize & sort: dirs first, then files (alpha)
+      const data = await apiFetch(`${CONTENTS}/${path}`);
       const items = data
         .filter(x => x.type === "dir" || SHOW_NON_CODE || CODE_EXTENSIONS.some(ext => x.name.toLowerCase().endsWith(ext)))
         .sort((a, b) => (a.type === b.type ? a.name.localeCompare(b.name) : a.type === "dir" ? -1 : 1));
@@ -213,7 +231,35 @@
       return items;
     }
 
-    // --- TREE RENDERING ---
+    // --- CONTRIBUTORS ---
+    async function loadContributors() {
+      const el = document.getElementById("contributors");
+      el.innerHTML = '<div class="muted">Loading contributors…</div>';
+      try {
+        const data = await apiFetch(`${API_ROOT}/contributors?per_page=100`);
+        if (!Array.isArray(data) || data.length === 0) {
+          el.innerHTML = '<div class="muted">No contributors yet. Be the first!</div>';
+          return;
+        }
+        el.innerHTML = "";
+        data.forEach(c => {
+          const card = document.createElement("div");
+          card.className = "contrib";
+          card.innerHTML = `
+            <img src="${c.avatar_url}" alt="${c.login}" loading="lazy" />
+            <div>
+              <a href="${c.html_url}" target="_blank" rel="noopener">${c.login}</a>
+              <div class="muted">${c.contributions} contribution${c.contributions===1?"":"s"}</div>
+            </div>
+          `;
+          el.appendChild(card);
+        });
+      } catch (e) {
+        el.innerHTML = `<div class="muted">Failed to load contributors (${e.message}).</div>`;
+      }
+    }
+
+    // --- TREE (Lazy-loaded nested explorer) ---
     const rootNodeEl = document.getElementById("treeRoot");
     const rootPath = "";
 
@@ -223,35 +269,28 @@
       const twisty = isDir ? "<span class='twisty' data-state='closed'>▸</span>" : "<span class='twisty' style='opacity:.4'>•</span>";
       const meta = isDir ? "<span class='meta'>folder</span>" : `<span class='meta'>${(size ?? 0).toLocaleString()} bytes</span>`;
       const label = `<span class="label">${name}</span>`;
+      const fileHref = `https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/${DEFAULT_BRANCH}/${encodeURI(path)}`;
       return `
         <div class="node" data-type="${type}" data-path="${path}">
           ${twisty}
           <span class="icon">${icon}</span>
-          ${isDir ? label : `<a class="file" href="https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/main/${encodeURI(path)}" target="_blank" rel="noopener">${name}</a>`}
+          ${isDir ? label : `<a class="file" href="${fileHref}" target="_blank" rel="noopener">${name}</a>`}
           ${meta}
         </div>
       `;
     }
 
-    async function renderNodeChildren(containerEl, path, forceFilterOnly = false) {
-      // Used for search: when forceFilterOnly, don't refetch, just filter existing DOM
-      if (forceFilterOnly && containerEl.dataset.rendered === "1") {
-        filterDOM(containerEl, searchQuery);
-        return;
-      }
-
+    async function renderNodeChildren(containerEl, path, filterOnly = false) {
+      if (filterOnly && containerEl.dataset.rendered === "1") { filterDOM(containerEl, searchQuery); return; }
       containerEl.innerHTML = '<div class="skeleton"></div><div class="skeleton" style="width:40%"></div>';
       try {
         const items = await getDir(path);
         const frag = document.createElement("div");
         for (const item of items) {
-          // search filter
           if (searchQuery && !item.name.toLowerCase().includes(searchQuery)) continue;
-
           const wrapper = document.createElement("div");
           wrapper.innerHTML = nodeTemplate({ type: item.type, name: item.name, path: item.path, size: item.size });
           const nodeEl = wrapper.firstElementChild;
-
           frag.appendChild(nodeEl);
 
           if (item.type === "dir") {
@@ -261,12 +300,9 @@
             nodeEl.after(children);
 
             nodeEl.addEventListener("click", async (e) => {
-              // Prevent link clicks from toggling parent
-              if (e.target.tagName === "A") return;
-
+              if (e.target.tagName === "A") return; // don't toggle on link click
               const twist = nodeEl.querySelector(".twisty");
               const isOpen = children.style.display !== "none";
-
               if (isOpen) {
                 children.style.display = "none";
                 if (twist) twist.textContent = "▸", twist.dataset.state = "closed";
@@ -276,9 +312,7 @@
                   const subItems = await getDir(item.path);
                   children.innerHTML = "";
                   for (const si of subItems) {
-                    // Apply current search filter on expansion as well
                     if (searchQuery && !si.name.toLowerCase().includes(searchQuery)) continue;
-
                     const wrap2 = document.createElement("div");
                     wrap2.innerHTML = nodeTemplate({ type: si.type, name: si.name, path: si.path, size: si.size });
                     const childNode = wrap2.firstElementChild;
@@ -328,7 +362,7 @@
         containerEl.appendChild(frag);
         containerEl.dataset.rendered = "1";
       } catch (err) {
-        containerEl.innerHTML = `<div class="loading" style="color:var(--error);">Error loading directory. ${err.message}</div>`;
+        containerEl.innerHTML = `<div class="loading" style="color:#ef4444">Error loading directory. ${err.message}</div>`;
       }
     }
 
@@ -336,42 +370,24 @@
       const allNodes = containerEl.querySelectorAll(".node");
       allNodes.forEach(node => {
         const name = (node.querySelector(".label")?.textContent || node.textContent || "").toLowerCase();
-        const isFileLink = node.querySelector("a.file");
         const match = !q || name.includes(q);
         node.style.display = match ? "" : "none";
-
-        // For files, hide purely via node; for dirs, we also handle their children
         const next = node.nextElementSibling;
         if (next && next.classList.contains("children")) {
           if (!q) {
-            // reset: collapse children if closed
             const twist = node.querySelector(".twisty");
             if (twist && twist.dataset.state !== "open") next.style.display = "none";
           } else {
-            // When searching, show children (and auto-load if not loaded yet) to surface matches
-            if (!next.dataset.loaded) {
-              // opportunistic load without toggling twisty
-              getDir(node.dataset?.path || node.getAttribute("data-path")).then(items => {
-                next.innerHTML = "";
-                for (const si of items) {
-                  if (!si.name.toLowerCase().includes(q)) continue;
-                  const wrap = document.createElement("div");
-                  wrap.innerHTML = nodeTemplate({ type: si.type, name: si.name, path: si.path, size: si.size });
-                  next.appendChild(wrap.firstElementChild);
-                }
-                next.dataset.loaded = "1";
-                next.style.display = "";
-              }).catch(()=>{});
-            } else {
-              next.style.display = "";
-            }
+            next.style.display = "";
           }
         }
       });
     }
 
-    // Initialize
-    renderNodeChildren(rootNodeEl, rootPath);
+    // Init
+    const rootNodeEl = document.getElementById("treeRoot");
+    loadContributors();
+    renderNodeChildren(rootNodeEl, "");
   </script>
 </body>
 </html>
