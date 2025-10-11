@@ -1,54 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Structures & Algorithms – Code Index</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Structures & Algorithms – Code Explorer</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 2rem; background: #f7f9fc; }
-    h1 { color: #0366d6; }
-    .folder { margin-top: 2rem; }
-    ul { list-style: none; padding-left: 0; }
-    li { margin: 6px 0; }
-    a { text-decoration: none; color: #333; }
-    a:hover { text-decoration: underline; color: #0366d6; }
+    :root {
+      --bg: #0b1220;
+      --panel: #0f172a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --card: #111827;
+      --border: #1f2937;
+      --hover: #0b1326;
+      --chip: #1e293b;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --error: #ef4444;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f9fc;
+        --panel: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --accent: #2563eb;
+        --card: #ffffff;
+        --border: #e5e7eb;
+        --hover: #f3f4f6;
+        --chip: #eef2ff;
+        --shadow: 0 8px 24px rgba(2, 6, 23, .08);
+      }
+    }
+    [data-theme="light"] {
+      --bg: #f7f9fc; --panel: #ffffff; --text: #0f172a; --muted: #475569;
+      --accent: #2563eb; --card: #ffffff; --border: #e5e7eb; --hover: #f3f4f6; --chip: #eef2ff;
+      --shadow: 0 8px 24px rgba(2, 6, 23, .08);
+    }
+    [data-theme="dark"] {
+      --bg: #0b1220; --panel: #0f172a; --text: #e2e8f0; --muted: #94a3b8;
+      --accent: #60a5fa; --card: #111827; --border: #1f2937; --hover: #0b1326; --chip: #1e293b;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.08), transparent 60%),
+                  radial-gradient(1000px 500px at 110% -20%, rgba(34,197,94,.08), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 18px 20px; }
+
+    .hero {
+      display: grid; gap: 10px; padding: 24px 0 6px;
+      grid-template-columns: 1fr auto; align-items: center;
+    }
+    .title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; letter-spacing: .2px; }
+    .subtitle { color: var(--muted); font-size: .95rem; margin-top: 6px; }
+
+    .controls { display: flex; gap: 10px; align-items: center; }
+    .chip {
+      padding: 6px 10px; border-radius: 999px; background: var(--chip);
+      color: var(--muted); font-size: .85rem; border: 1px solid var(--border);
+    }
+    .btn {
+      appearance: none; border: 1px solid var(--border);
+      padding: 8px 12px; border-radius: 10px; background: var(--panel);
+      color: var(--text); cursor: pointer; font-weight: 600;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover { background: var(--hover); transform: translateY(-1px); }
+    .search {
+      width: min(360px, 55vw); background: var(--panel);
+      border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+      color: var(--text); outline: none;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 10px 12px;
+      margin: 14px 0 28px;
+    }
+
+    /* Tree */
+    .tree { padding: 6px 8px 2px 6px; }
+    .node {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 8px; border-radius: 10px;
+      transition: background .15s ease;
+    }
+    .node:hover { background: var(--hover); }
+    .node .twisty {
+      width: 18px; height: 18px; border: 1px solid var(--border);
+      border-radius: 6px; display: inline-grid; place-items: center;
+      font-size: 12px; background: var(--card);
+    }
+    .node .icon { width: 18px; text-align: center; opacity: .9; }
+    .node .label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .node .meta { color: var(--muted); font-size: .85rem; }
+
+    .children { margin-left: 28px; border-left: 1px dashed var(--border); padding-left: 10px; }
+    .loading { color: var(--muted); font-style: italic; padding: 6px 0 12px 36px; }
+    .skeleton {
+      height: 12px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 20%, transparent), transparent);
+      background-size: 200% 100%; animation: shimmer 1.2s infinite; border-radius: 6px; margin: 8px 0 8px 36px; width: 60%;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    a.file {
+      color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--border);
+    }
+    a.file:hover { color: var(--accent); border-color: var(--accent); }
+
+    footer {
+      color: var(--muted); font-size: .9rem; padding: 24px 0 60px;
+    }
+    .badge { color: var(--accent); font-weight: 700; }
   </style>
 </head>
 <body>
-  <h1>📘 Data Structures & Algorithms</h1>
-  <p>Auto-generated list of code files in this repository.</p>
+  <header>
+    <div class="container hero">
+      <div>
+        <div class="title">📘 Data Structures & Algorithms — Code Explorer</div>
+        <div class="subtitle">Nested folders • Lazy loading • Dark mode • GitHub API powered</div>
+      </div>
+      <div class="controls">
+        <input id="search" class="search" placeholder="Search files… (e.g., heap, trie, dp)" />
+        <button id="themeToggle" class="btn" title="Toggle theme">🌓 Theme</button>
+      </div>
+    </div>
+  </header>
 
-  <div id="content"></div>
+  <main class="container">
+    <div class="card">
+      <div class="tree" id="treeRoot"></div>
+    </div>
+    <footer>
+      Tip: unauthenticated GitHub API has low rate limits. If you hit them, wait a minute or <span class="badge">add a token</span> in the script (optional).
+    </footer>
+  </main>
 
   <script>
-    const repoOwner = "ShubhKotnala";
-    const repoName = "Data_Structures_And_Algorithms";
-    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents`;
+    // --- CONFIG ---
+    const REPO_OWNER = "ShubhKotnala";
+    const REPO_NAME = "Data_Structures_And_Algorithms";
+    const API_ROOT = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
+    // Optional: add a personal access token (with public_repo scope) to increase rate limits.
+    // const GITHUB_TOKEN = "ghp_xxx"; // leave undefined to stay unauthenticated
+    const CODE_EXTENSIONS = [".py", ".java", ".cpp", ".c", ".js"];
+    const SHOW_NON_CODE = false; // set true if you want to show every file
 
-    async function loadFiles(path = "", container = document.getElementById("content")) {
-      const res = await fetch(`${apiUrl}/${path}`);
-      const data = await res.json();
+    // --- THEME ---
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const userPref = localStorage.getItem("theme");
+    if (userPref) document.body.setAttribute("data-theme", userPref);
 
-      const ul = document.createElement("ul");
-      for (const item of data) {
-        const li = document.createElement("li");
-        if (item.type === "dir") {
-          const folderDiv = document.createElement("div");
-          folderDiv.classList.add("folder");
-          const h2 = document.createElement("h2");
-          h2.textContent = `📂 ${item.name}`;
-          folderDiv.appendChild(h2);
-          await loadFiles(item.path, folderDiv);
-          container.appendChild(folderDiv);
-        } else if (item.name.endsWith(".py") || item.name.endsWith(".java") || item.name.endsWith(".cpp") || item.name.endsWith(".js")) {
-          li.innerHTML = `<a href="${item.html_url}" target="_blank">${item.name}</a>`;
-          ul.appendChild(li);
-        }
-      }
-      container.appendChild(ul);
+    themeToggle.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const next = current === "dark" ? "light" : "dark";
+      document.body.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    });
+
+    // --- SEARCH ---
+    const searchInput = document.getElementById("search");
+    let searchQuery = "";
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      // collapse all then expand matches on next render pass
+      renderNodeChildren(rootNodeEl, rootPath, true);
+    });
+
+    // --- FETCH / CACHE ---
+    const cache = new Map(); // path -> items[]
+    async function apiFetch(url) {
+      const headers = { "Accept": "application/vnd.github+json" };
+      // if (typeof GITHUB_TOKEN === "string") headers["Authorization"] = `Bearer ${GITHUB_TOKEN}`;
+      const res = await fetch(url, { headers });
+      if (!res.ok) throw new Error(`GitHub API error ${res.status}`);
+      return res.json();
+    }
+    async function getDir(path = "") {
+      const key = path || "/";
+      if (cache.has(key)) return cache.get(key);
+      const data = await apiFetch(`${API_ROOT}/${path}`);
+      // normalize & sort: dirs first, then files (alpha)
+      const items = data
+        .filter(x => x.type === "dir" || SHOW_NON_CODE || CODE_EXTENSIONS.some(ext => x.name.toLowerCase().endsWith(ext)))
+        .sort((a, b) => (a.type === b.type ? a.name.localeCompare(b.name) : a.type === "dir" ? -1 : 1));
+      cache.set(key, items);
+      return items;
     }
 
-    loadFiles();
+    // --- TREE RENDERING ---
+    const rootNodeEl = document.getElementById("treeRoot");
+    const rootPath = "";
+
+    function nodeTemplate({ type, name, path, size }) {
+      const isDir = type === "dir";
+      const icon = isDir ? "📂" : "📄";
+      const twisty = isDir ? "<span class='twisty' data-state='closed'>▸</span>" : "<span class='twisty' style='opacity:.4'>•</span>";
+      const meta = isDir ? "<span class='meta'>folder</span>" : `<span class='meta'>${(size ?? 0).toLocaleString()} bytes</span>`;
+      const label = `<span class="label">${name}</span>`;
+      return `
+        <div class="node" data-type="${type}" data-path="${path}">
+          ${twisty}
+          <span class="icon">${icon}</span>
+          ${isDir ? label : `<a class="file" href="https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/main/${encodeURI(path)}" target="_blank" rel="noopener">${name}</a>`}
+          ${meta}
+        </div>
+      `;
+    }
+
+    async function renderNodeChildren(containerEl, path, forceFilterOnly = false) {
+      // Used for search: when forceFilterOnly, don't refetch, just filter existing DOM
+      if (forceFilterOnly && containerEl.dataset.rendered === "1") {
+        filterDOM(containerEl, searchQuery);
+        return;
+      }
+
+      containerEl.innerHTML = '<div class="skeleton"></div><div class="skeleton" style="width:40%"></div>';
+      try {
+        const items = await getDir(path);
+        const frag = document.createElement("div");
+        for (const item of items) {
+          // search filter
+          if (searchQuery && !item.name.toLowerCase().includes(searchQuery)) continue;
+
+          const wrapper = document.createElement("div");
+          wrapper.innerHTML = nodeTemplate({ type: item.type, name: item.name, path: item.path, size: item.size });
+          const nodeEl = wrapper.firstElementChild;
+
+          frag.appendChild(nodeEl);
+
+          if (item.type === "dir") {
+            const children = document.createElement("div");
+            children.className = "children";
+            children.style.display = "none";
+            nodeEl.after(children);
+
+            nodeEl.addEventListener("click", async (e) => {
+              // Prevent link clicks from toggling parent
+              if (e.target.tagName === "A") return;
+
+              const twist = nodeEl.querySelector(".twisty");
+              const isOpen = children.style.display !== "none";
+
+              if (isOpen) {
+                children.style.display = "none";
+                if (twist) twist.textContent = "▸", twist.dataset.state = "closed";
+              } else {
+                if (!children.dataset.loaded) {
+                  children.innerHTML = '<div class="loading">Loading…</div>';
+                  const subItems = await getDir(item.path);
+                  children.innerHTML = "";
+                  for (const si of subItems) {
+                    // Apply current search filter on expansion as well
+                    if (searchQuery && !si.name.toLowerCase().includes(searchQuery)) continue;
+
+                    const wrap2 = document.createElement("div");
+                    wrap2.innerHTML = nodeTemplate({ type: si.type, name: si.name, path: si.path, size: si.size });
+                    const childNode = wrap2.firstElementChild;
+                    children.appendChild(childNode);
+
+                    if (si.type === "dir") {
+                      const gchild = document.createElement("div");
+                      gchild.className = "children";
+                      gchild.style.display = "none";
+                      childNode.after(gchild);
+
+                      childNode.addEventListener("click", async (evt) => {
+                        if (evt.target.tagName === "A") return;
+                        const twist2 = childNode.querySelector(".twisty");
+                        const open2 = gchild.style.display !== "none";
+                        if (open2) {
+                          gchild.style.display = "none";
+                          if (twist2) twist2.textContent = "▸", twist2.dataset.state = "closed";
+                        } else {
+                          if (!gchild.dataset.loaded) {
+                            gchild.innerHTML = '<div class="loading">Loading…</div>';
+                            const sub2 = await getDir(si.path);
+                            gchild.innerHTML = "";
+                            for (const s2 of sub2) {
+                              if (searchQuery && !s2.name.toLowerCase().includes(searchQuery)) continue;
+                              const w3 = document.createElement("div");
+                              w3.innerHTML = nodeTemplate({ type: s2.type, name: s2.name, path: s2.path, size: s2.size });
+                              gchild.appendChild(w3.firstElementChild);
+                            }
+                            gchild.dataset.loaded = "1";
+                          }
+                          gchild.style.display = "";
+                          if (twist2) twist2.textContent = "▾", twist2.dataset.state = "open";
+                        }
+                      });
+                    }
+                  }
+                  children.dataset.loaded = "1";
+                }
+                children.style.display = "";
+                if (twist) twist.textContent = "▾", twist.dataset.state = "open";
+              }
+            });
+          }
+        }
+        containerEl.innerHTML = "";
+        containerEl.appendChild(frag);
+        containerEl.dataset.rendered = "1";
+      } catch (err) {
+        containerEl.innerHTML = `<div class="loading" style="color:var(--error);">Error loading directory. ${err.message}</div>`;
+      }
+    }
+
+    function filterDOM(containerEl, q) {
+      const allNodes = containerEl.querySelectorAll(".node");
+      allNodes.forEach(node => {
+        const name = (node.querySelector(".label")?.textContent || node.textContent || "").toLowerCase();
+        const isFileLink = node.querySelector("a.file");
+        const match = !q || name.includes(q);
+        node.style.display = match ? "" : "none";
+
+        // For files, hide purely via node; for dirs, we also handle their children
+        const next = node.nextElementSibling;
+        if (next && next.classList.contains("children")) {
+          if (!q) {
+            // reset: collapse children if closed
+            const twist = node.querySelector(".twisty");
+            if (twist && twist.dataset.state !== "open") next.style.display = "none";
+          } else {
+            // When searching, show children (and auto-load if not loaded yet) to surface matches
+            if (!next.dataset.loaded) {
+              // opportunistic load without toggling twisty
+              getDir(node.dataset?.path || node.getAttribute("data-path")).then(items => {
+                next.innerHTML = "";
+                for (const si of items) {
+                  if (!si.name.toLowerCase().includes(q)) continue;
+                  const wrap = document.createElement("div");
+                  wrap.innerHTML = nodeTemplate({ type: si.type, name: si.name, path: si.path, size: si.size });
+                  next.appendChild(wrap.firstElementChild);
+                }
+                next.dataset.loaded = "1";
+                next.style.display = "";
+              }).catch(()=>{});
+            } else {
+              next.style.display = "";
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize
+    renderNodeChildren(rootNodeEl, rootPath);
   </script>
 </body>
 </html>
