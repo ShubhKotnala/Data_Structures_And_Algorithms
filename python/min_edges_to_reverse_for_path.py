@@ -1,3 +1,9 @@
+# Problem: Find the minimum number of edges to reverse to make a path from source to destination.
+# Example:
+# Input: n = 7, edges = [(0,1), (2,1), (2,3), (5,1), (4,5), (6,4), (6,3)], source = 0, destination = 6
+# Output: 2
+# Explanation: Reverse (2,1) and (6,3) to make a valid path from 0 to 6.
+
 def solve(mp, v, s, src, dst, dp):
     
     if v[src] == 1:
