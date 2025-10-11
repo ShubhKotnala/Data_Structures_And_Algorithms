@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Structures & Algorithms – Code Index</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f7f9fc; }
+    h1 { color: #0366d6; }
+    .folder { margin-top: 2rem; }
+    ul { list-style: none; padding-left: 0; }
+    li { margin: 6px 0; }
+    a { text-decoration: none; color: #333; }
+    a:hover { text-decoration: underline; color: #0366d6; }
+  </style>
+</head>
+<body>
+  <h1>📘 Data Structures & Algorithms</h1>
+  <p>Auto-generated list of code files in this repository.</p>
+
+  <div id="content"></div>
+
+  <script>
+    const repoOwner = "ShubhKotnala";
+    const repoName = "Data_Structures_And_Algorithms";
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents`;
+
+    async function loadFiles(path = "", container = document.getElementById("content")) {
+      const res = await fetch(`${apiUrl}/${path}`);
+      const data = await res.json();
+
+      const ul = document.createElement("ul");
+      for (const item of data) {
+        const li = document.createElement("li");
+        if (item.type === "dir") {
+          const folderDiv = document.createElement("div");
+          folderDiv.classList.add("folder");
+          const h2 = document.createElement("h2");
+          h2.textContent = `📂 ${item.name}`;
+          folderDiv.appendChild(h2);
+          await loadFiles(item.path, folderDiv);
+          container.appendChild(folderDiv);
+        } else if (item.name.endsWith(".py") || item.name.endsWith(".java") || item.name.endsWith(".cpp") || item.name.endsWith(".js")) {
+          li.innerHTML = `<a href="${item.html_url}" target="_blank">${item.name}</a>`;
+          ul.appendChild(li);
+        }
+      }
+      container.appendChild(ul);
+    }
+
+    loadFiles();
+  </script>
+</body>
+</html>
