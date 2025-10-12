@@ -1,7 +1,6 @@
 /* Author : Shuyin Liu
  * Problem : To find the longest common prefix string amongst an array of strings, input on command line.
  * Explanation : Sample command --  java LongestCommonPrefix apple application appointment
- * dasff
  */
 
 class LongestCommonPrefix {
