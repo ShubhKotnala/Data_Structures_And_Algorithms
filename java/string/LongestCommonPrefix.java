@@ -1,6 +1,11 @@
+/* Author : Shuyin Liu
+ * Problem : To find the longest common prefix string amongst an array of strings, input on command line.
+ * Explanation : Sample command --  java LongestCommonPrefix apple application appointment
+ * dasff
+ */
+
 class LongestCommonPrefix {
     public static void main(String[] args) {
-        // Check if there are any strings passed as arguments
         System.out.print("The common prefix is:");
         if (args.length == 0) {
             System.out.println("");
@@ -15,14 +20,12 @@ class LongestCommonPrefix {
 
         for (int i = 1; i < args.length; i++) {
             prev = getCommonPrefix(prev, args[i]);
-            // If at any point the common prefix is empty, break early.
             if (prev.isEmpty()) {
                 System.out.println("");
                 return;
             }
         }
 
-        // Output the longest common prefix
         System.out.println(prev);
     }
 
